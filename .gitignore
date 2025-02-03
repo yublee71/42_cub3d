@@ -1,0 +1,12 @@
+#main program
+cub3d
+
+#libraries
+*.a
+
+#object files
+build/
+*.o
+
+#executables
+a.out
