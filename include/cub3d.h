@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/03 19:07:42 by yublee           ###   ########.fr       */
+/*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
+/*   Updated: 2025/02/03 19:27:33 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <X11/keysymdef.h>
 # include <X11/keysym.h>
 
-# define STR_ERR_MLX_INIT	"Error: MLX initialization failed.\n"
+# define STR_ERR_MLX_INIT		"Error: MLX initialization failed.\n"
 # define STR_ERR_WINDOW_INIT	"Error: Window initialization failed.\n"
 
 # define WINDOW_WIDTH	1280
