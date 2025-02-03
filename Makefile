@@ -5,6 +5,8 @@ CFLAGS			:= $(MANDATORY_FLAGS)
 
 SRCS			:= \
 					src/main.c \
+					src/keyhook.c \
+					src/utils.c \
 
 BUILD_DIR		:= build
 OBJS			:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
@@ -42,8 +44,8 @@ clean:
 
 fclean: clean
 		$(RM) $(RMFLAGS) $(NAME)
-		$(MAKE) -C $(LIBFT_DIR) fclean
-		$(MAKE) -C $(MINILIB_DIR) fclean
+		$(RM) $(RMFLAGS) $(LIBFT_LIB)
+		$(RM) $(RMFLAGS) $(MINILIB_LIB)
 
 re: fclean all
 
