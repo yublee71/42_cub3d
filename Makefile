@@ -20,6 +20,8 @@ LIBFT_LIB		:=  $(LIBFT_DIR)/libft.a
 MINILIB_DIR		:= ./lib/minilibx-linux
 MINILIB_LIB		= $(MINILIB_DIR)/libmlx.a
 
+INCLUDE			= -I $(MINILIB_DIR)
+
 LINK_FLAGS		:= -L $(LIBFT_DIR) -L $(MINILIB_DIR) -lft -lmlx_Linux -lX11 -lXext -lm -lbsd
 
 all: $(NAME)
@@ -35,7 +37,7 @@ $(MINILIB_LIB):
 
 $(BUILD_DIR)/%.o: %.c
 		@if [ ! -d $(@D) ]; then mkdir -pv $(@D); fi
-		$(CC) $(CFLAGS) -c $^ -o $@
+		$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 clean:
 		$(RM) $(RMFLAGS) $(BUILD_DIR)
