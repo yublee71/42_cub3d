@@ -7,6 +7,7 @@ SRCS			:= \
 					src/main.c \
 					src/keyhook.c \
 					src/img_utils.c \
+					src/img_draw.c \
 					src/utils.c \
 
 BUILD_DIR		:= build
