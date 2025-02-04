@@ -9,6 +9,7 @@ SRCS			:= \
 					src/img_utils.c \
 					src/img_draw.c \
 					src/utils.c \
+					src/exit.c \
 
 BUILD_DIR		:= build
 OBJS			:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
