@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/04 15:58:23 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:25:13 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_vars
 	t_vecset	vecset;
 }	t_vars;
 
-void	draw_image(t_img dst);
+void	draw_image(t_vars *vars);
 t_img	get_img_from_file(char *file_name, t_vars vars);
 int		handle_key_input(int keysym, t_vars *vars);
 int		err_msg(char *msg, int return_val);

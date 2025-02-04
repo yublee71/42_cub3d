@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/04 16:13:00 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:25:26 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	initialize_image(&vars);
 	get_assets(&vars);
-	draw_image(vars.img);
+	draw_image(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
 	mlx_key_hook(vars.win, handle_key_input, &vars);
 	mlx_hook(vars.win, 17, 1L << 2, close_game, &vars);
