@@ -6,6 +6,7 @@ CFLAGS			:= $(MANDATORY_FLAGS)
 SRCS			:= \
 					src/main.c \
 					src/keyhook.c \
+					src/img_utils.c \
 					src/utils.c \
 
 BUILD_DIR		:= build
