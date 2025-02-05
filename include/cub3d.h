@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/05 14:51:58 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/05 19:58:57 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "get_next_line.h"
 # include "mlx.h"
 # include <stdio.h>
+# include <stdlib.h>
 # include <math.h>
 # include <X11/keysymdef.h>
 # include <X11/keysym.h>
@@ -27,9 +28,15 @@
 # define WINDOW_WIDTH	1280
 # define WINDOW_HEIGHT	720
 
-# define FOV			60
+# define FOV			90
 # define MOVE_DISTANCE	10
 # define MOVE_ANGLE		10
+
+typedef struct s_grid
+{
+	int	x;
+	int	y;
+}	t_grid;
 
 typedef struct s_vec
 {
@@ -74,6 +81,8 @@ typedef struct s_vars
 	void		*mlx; //needs free
 	void		*win; //needs free
 	char		**map;
+	int			map_width;
+	int			map_height;
 	t_img		img; //needs free
 	t_img		assets[4]; //needs free
 	t_vecset	vecset;
@@ -81,10 +90,12 @@ typedef struct s_vars
 }	t_vars;
 
 void	draw_image_with_color(t_vars *vars);
-// t int		calculate_line_height(int i, t_vars vars);
+int		calculate_line_height(int i, t_vars *vars);
 t_img	get_img_from_file(char *file_name, t_vars vars);
 int		handle_key_input(int keysym, t_vars *vars);
 int		err_msg(char *msg, int return_val);
 int		close_game(t_vars *vars);
+t_vec	rotate_vector(t_vec	vec, int degree);
+double	get_vector_length(t_vec raydir);
 
 #endif

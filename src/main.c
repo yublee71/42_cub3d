@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/05 14:41:45 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/05 19:35:56 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char *map[MAP_H + 1] = {
 
 /* ********************************** */
 
-static t_vecset get_vecset(int pos_x, int pos_y, t_cardinal direction)
+static t_vecset get_vecset(double pos_x, double pos_y, t_cardinal direction)
 {
 	t_vecset vecset;
 
@@ -42,8 +42,7 @@ static t_vecset get_vecset(int pos_x, int pos_y, t_cardinal direction)
 	{
 		vecset.dir.x = 0;
 		vecset.dir.y = -1;
-		// vecset.plane.x = tan((M_PI / 180) * (FOV / 2));
-		vecset.plane.x = tan(0.524);
+		vecset.plane.x = tan((M_PI / 180) * (FOV / 2));
 		vecset.plane.y = 0;
 	}
 	else if (direction == SOUTH)
@@ -129,7 +128,9 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 	vars.map = map; //TODO: remove
-	vars.vecset = get_vecset(3, 4, NORTH); //TODO: get args from parser
+	vars.map_height = MAP_H;
+	vars.map_width = 6;
+	vars.vecset = get_vecset(2.5, 3.5, NORTH); //TODO: get args from parser
 	vars.colorset = get_colorset((int)0xff00ff00, (int)0xff0000ff); //TODO: get colors from parser
 	if (initialize_window(&vars) < 0)
 		return (EXIT_FAILURE);
