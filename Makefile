@@ -8,6 +8,7 @@ SRCS			:= \
 					src/keyhook.c \
 					src/img_utils.c \
 					src/img_draw.c \
+					src/dda.c \
 					src/utils.c \
 					src/exit.c \
 

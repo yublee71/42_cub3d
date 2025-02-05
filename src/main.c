@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/04 16:25:26 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/05 14:41:45 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ static t_vecset get_vecset(int pos_x, int pos_y, t_cardinal direction)
 	{
 		vecset.dir.x = 0;
 		vecset.dir.y = -1;
-		vecset.plane.x = tan(FOV/2);
+		// vecset.plane.x = tan((M_PI / 180) * (FOV / 2));
+		vecset.plane.x = tan(0.524);
 		vecset.plane.y = 0;
 	}
 	else if (direction == SOUTH)
 	{
 		vecset.dir.x = 0;
 		vecset.dir.y = 1;
-		vecset.plane.x = -tan(FOV/2);
+		vecset.plane.x = -tan((M_PI / 180) * (FOV / 2));
 		vecset.plane.y = 0;
 	}
 	else if (direction == EAST)
@@ -57,16 +58,33 @@ static t_vecset get_vecset(int pos_x, int pos_y, t_cardinal direction)
 		vecset.dir.x = 1;
 		vecset.dir.y = 0;
 		vecset.plane.x = 0;
-		vecset.plane.y = tan(FOV/2);
+		vecset.plane.y = tan((M_PI / 180) * (FOV / 2));
 	}
 	else if (direction == WEST)
 	{
 		vecset.dir.x = -1;
 		vecset.dir.y = 0;
 		vecset.plane.x = 0;
-		vecset.plane.y = -tan(FOV/2);
+		vecset.plane.y = -tan((M_PI / 180) * (FOV / 2));
 	}
+	/*will be removed later*/
+	printf("pos x: %f\n", vecset.pos.x);
+	printf("pos y: %f\n", vecset.pos.y);
+	printf("dir x: %f\n", vecset.dir.x);
+	printf("dir y: %f\n", vecset.dir.y);
+	printf("plane x: %f\n", vecset.plane.x);
+	printf("plane y: %f\n", vecset.plane.y);
+	/********************* */
 	return vecset;
+}
+
+static t_colorset get_colorset(int color1, int color2)
+{
+	t_colorset colorset;
+
+	colorset.color_ceiling = color1;
+	colorset.color_floor = color2;
+	return colorset;
 }
 
 static void	get_assets(t_vars *vars)
@@ -111,12 +129,13 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 	vars.map = map; //TODO: remove
-	vars.vecset = get_vecset(3, 3, NORTH); //TODO: get args parser
+	vars.vecset = get_vecset(3, 4, NORTH); //TODO: get args from parser
+	vars.colorset = get_colorset((int)0xff00ff00, (int)0xff0000ff); //TODO: get colors from parser
 	if (initialize_window(&vars) < 0)
 		return (EXIT_FAILURE);
 	initialize_image(&vars);
 	get_assets(&vars);
-	draw_image(&vars);
+	draw_image_with_color(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
 	mlx_key_hook(vars.win, handle_key_input, &vars);
 	mlx_hook(vars.win, 17, 1L << 2, close_game, &vars);
