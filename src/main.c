@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/05 19:35:56 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/06 16:48:25 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /* this section will be removed later */
 
 #define MAP_H 6
+#define MAP_W 6
 #define PATH_TO_IMAGE_N "./assets/n.xpm"
 #define PATH_TO_IMAGE_S "./assets/s.xpm"
 #define PATH_TO_IMAGE_E "./assets/e.xpm"
@@ -24,7 +25,7 @@ char *map[MAP_H + 1] = {
 	"111111",
 	"100001",
 	"100001",
-	"100001",
+	"10P001", //(2, 3) -> (2.5, 3.5)
 	"100001",
 	"111111",
 	NULL
@@ -129,7 +130,7 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	vars.map = map; //TODO: remove
 	vars.map_height = MAP_H;
-	vars.map_width = 6;
+	vars.map_width = MAP_W;
 	vars.vecset = get_vecset(2.5, 3.5, NORTH); //TODO: get args from parser
 	vars.colorset = get_colorset((int)0xff00ff00, (int)0xff0000ff); //TODO: get colors from parser
 	if (initialize_window(&vars) < 0)
