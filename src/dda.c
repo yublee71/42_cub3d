@@ -6,57 +6,36 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/06 16:38:43 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 17:30:44 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 // raypos = pos + l * raydir
-double	get_distance_to_the_wall(t_vars *vars, t_vec raydir)
+static double	get_distance_to_the_wall(t_vars *vars, t_vec raydir)
 {
-	int			raydir_x_sign;
-	int			raydir_y_sign;
-	double		tan_val;
-	double		dx;
-	double		dy;
-	double		lx;
-	double		ly;
-	t_grid		pos_grid;
-	t_vec		raypos;
-	t_grid		raygrid;
-	int			i;
-	int			j;
+	double	distance;
+	double	raydir_tan;
 
-	raydir_x_sign = 1;
-	raydir_y_sign = 1;
-	if (raydir.x < 0)
-		raydir_x_sign = -1;
-	if (raydir.y < 0)
-		raydir_y_sign = -1;
-
-	tan_val = fabs(raydir.y / raydir.x);
-
-	pos_grid.x = (int)(vars->vecset.pos.x);
-	pos_grid.y = (int)(vars->vecset.pos.y);
-
-	dx = 1 / tan_val;
-	dy = tan_val;
-
-	if (raydir_x_sign > 0)
+	(void) vars;
+	raydir_tan = fabs(raydir.y / raydir.x);
+	if (raydir.x > 0)
 	{
-		i = 1;
-		raygrid.x = pos_grid.x + i;
-		raypos.y = (int)(vars->vecset.pos.y + l)
+		if (raydir.y > 0)
+			distance = get_distance_to_the_wall_case1(vars, raydir, raydir_tan);
+		else
+			distance = get_distance_to_the_wall_case2(vars, raydir, raydir_tan);
 	}
 	else
 	{
-
+		if (raydir.y > 0)
+			distance = get_distance_to_the_wall_case3(vars, raydir, raydir_tan);
+		else
+			distance = get_distance_to_the_wall_case4(vars, raydir, raydir_tan);
 	}
-	if (raydir_y_sign > 0)
-	else
+	return distance;
 }
-
 
 // raydir = dir + k * plane
 int	calculate_line_height(int i, t_vars *vars)
@@ -65,7 +44,7 @@ int	calculate_line_height(int i, t_vars *vars)
 	t_vec		raydir;
 	double		k;
 	double		distance;
-	// double		line_height;
+	double		line_height;
 
 	vecset = vars->vecset;
 
@@ -75,16 +54,14 @@ int	calculate_line_height(int i, t_vars *vars)
 	raydir.x = vecset.dir.x + k * vecset.plane.x;
 	raydir.y = vecset.dir.y + k * vecset.plane.y;
 
-	
-
-	
-	
 	// printf("lx: %f\n", lx);
 	// printf("ly: %f\n", ly);
 
 	distance = get_distance_to_the_wall(vars, raydir);
-	// line_height = WINDOW_HEIGHT / distance;
-
-	// printf("%f\n", line_height);
-	return (0);
+	printf("distance: %f\n", distance);
+	line_height = 0;
+	if (distance)
+		line_height = WINDOW_HEIGHT / distance;
+	printf("line_height: %f\n", line_height);
+	return (line_height);
 }

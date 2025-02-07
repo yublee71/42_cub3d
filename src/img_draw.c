@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:59:36 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/05 14:54:34 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 14:56:19 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,11 +167,11 @@ void	draw_image_with_color(t_vars *vars)
 {
 	int	i;
 	int	line_height;
-	int	color;
+	int	line_color;
 
 	i = 0;
 	line_height = WINDOW_HEIGHT;
-	color = (int)0xffffffff;
+	line_color = (int)0xffffffff;
 	while (i < WINDOW_WIDTH)
 	{
 		// if (i < WINDOW_WIDTH / 3)
@@ -181,7 +181,7 @@ void	draw_image_with_color(t_vars *vars)
 		// else
 		// 	line_height++;
 		line_height = calculate_line_height(i, vars);
-		draw_line(i, vars, line_height, color);
+		draw_line(i, vars, line_height, line_color);
 		i++;
 	}
 }

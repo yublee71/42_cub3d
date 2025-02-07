@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:52:21 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/05 19:58:06 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 18:07:51 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ double	get_vector_length(t_vec raydir)
 	
 	length = sqrt(pow(raydir.x, 2) + pow(raydir.y, 2));
 	return (length);
+}
+
+double	get_vector_to_vector_distance(t_vec vec1, t_vec vec2)
+{
+	double	distance;
+	
+	distance = sqrt(pow((vec1.x - vec2.x), 2) + pow((vec1.y - vec2.y), 2));
+	return (distance);
 }
 
 t_vec	rotate_vector(t_vec	vec, int degree)

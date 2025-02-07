@@ -1,7 +1,8 @@
 NAME			:= cub3d
 CC				:= cc
 MANDATORY_FLAGS	:= -Wall -Wextra -Werror
-CFLAGS			:= $(MANDATORY_FLAGS)
+DEBUG_FLAGS		:= -g
+CFLAGS			:= $(MANDATORY_FLAGS) $(DEBUG_FLAGS)
 
 SRCS			:= \
 					src/main.c \
@@ -9,6 +10,7 @@ SRCS			:= \
 					src/img_utils.c \
 					src/img_draw.c \
 					src/dda.c \
+					src/dda_cases.c \
 					src/utils.c \
 					src/exit.c \
 
