@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 18:34:01 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 21:42:02 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		handle_key_input(int keysym, t_vars *vars);
 int		err_msg(char *msg, int return_val);
 int		close_game(t_vars *vars);
 t_vec	rotate_vector(t_vec	vec, int degree);
+double	convert_deg_to_rad(double degree);
 double	get_vector_length(t_vec raydir);
 double	get_vector_to_vector_distance(t_vec vec1, t_vec vec2);
 
