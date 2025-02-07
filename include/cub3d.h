@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 18:17:59 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 18:34:01 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define FOV			90
 # define MOVE_DISTANCE	10
-# define MOVE_ANGLE		10
+# define MOVE_ANGLE		6
 
 typedef struct s_grid
 {
@@ -85,7 +85,7 @@ typedef struct s_vars
 	int			map_height;
 	t_img		img; //needs free
 	t_img		assets[4]; //needs free
-	t_vecset	vecset;
+	t_vecset	*vecset;
 	t_colorset	colorset;
 }	t_vars;
 

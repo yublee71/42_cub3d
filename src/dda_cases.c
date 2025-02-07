@@ -54,7 +54,7 @@ double	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan)
 	double		dx;
 	double		dy;
 
-	vecset = vars->vecset;
+	vecset = *vars->vecset;
 	distance_x = 0;
 	distance_y = 0;
 
@@ -115,7 +115,7 @@ double	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan)
 	double		dx;
 	double		dy;
 
-	vecset = vars->vecset;
+	vecset = *vars->vecset;
 	distance_x = 0;
 	distance_y = 0;
 
@@ -176,7 +176,7 @@ double	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan)
 	double		dx;
 	double		dy;
 
-	vecset = vars->vecset;
+	vecset = *vars->vecset;
 	distance_x = 0;
 	distance_y = 0;
 
@@ -237,7 +237,7 @@ double	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan)
 	double		dx;
 	double		dy;
 
-	vecset = vars->vecset;
+	vecset = *vars->vecset;
 	distance_x = 0;
 	distance_y = 0;
 

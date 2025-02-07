@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 17:30:44 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 18:35:31 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ static double	get_distance_to_the_wall(t_vars *vars, t_vec raydir)
 	if (raydir.x > 0)
 	{
 		if (raydir.y > 0)
-			distance = get_distance_to_the_wall_case1(vars, raydir, raydir_tan);
+			distance = get_distance_to_the_wall_case1(vars, raydir_tan);
 		else
-			distance = get_distance_to_the_wall_case2(vars, raydir, raydir_tan);
+			distance = get_distance_to_the_wall_case2(vars, raydir_tan);
 	}
 	else
 	{
 		if (raydir.y > 0)
-			distance = get_distance_to_the_wall_case3(vars, raydir, raydir_tan);
+			distance = get_distance_to_the_wall_case3(vars, raydir_tan);
 		else
-			distance = get_distance_to_the_wall_case4(vars, raydir, raydir_tan);
+			distance = get_distance_to_the_wall_case4(vars, raydir_tan);
 	}
 	return distance;
 }
@@ -46,7 +46,7 @@ int	calculate_line_height(int i, t_vars *vars)
 	double		distance;
 	double		line_height;
 
-	vecset = vars->vecset;
+	vecset = *vars->vecset;
 
 	k = 2 * (double)i / (double)WINDOW_WIDTH - 1;
 	printf("k: %f\n", k);

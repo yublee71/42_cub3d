@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 18:15:57 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 18:46:18 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,13 +125,15 @@ static int	initialize_window(t_vars *vars)
 int	main(int argc, char *argv[])
 {
 	t_vars		vars;
+	t_vecset	vecset;
 
 	(void)argc;
 	(void)argv;
 	vars.map = map; //TODO: remove
 	vars.map_height = MAP_H;
 	vars.map_width = MAP_W;
-	vars.vecset = get_vecset(2.5, 3.5, NORTH); //TODO: get args from parser
+	vecset = get_vecset(2.5, 3.5, NORTH); //TODO: get args from parser
+	vars.vecset = &vecset;
 	vars.colorset = get_colorset((int)0xff00ff00, (int)0xff0000ff); //TODO: get colors from parser
 	if (initialize_window(&vars) < 0)
 		return (EXIT_FAILURE);
