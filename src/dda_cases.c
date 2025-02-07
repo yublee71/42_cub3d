@@ -68,7 +68,7 @@ double	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan)
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_x = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
 			break ;
 		}
@@ -88,9 +88,9 @@ double	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan)
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_y = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
-			printf("distance_y: %f\n", distance_y);
+			// printf("distance_y: %f\n", distance_y);
 			break ;
 		}
 		firstwall_pos.y++;
@@ -129,7 +129,7 @@ double	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan)
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_x = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
 			break ;
 		}
@@ -142,22 +142,22 @@ double	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan)
 	firstwall_pos.y = (int)vecset.pos.y;
 	dy = vecset.pos.y - firstwall_pos.y;
 	firstwall_pos.x = vecset.pos.x + dy / raydir_tan;
-	firstwall_grid.x = (int)firstwall_pos.x;
+	firstwall_grid.x = (int)firstwall_pos.x - 1;
 	firstwall_grid.y = (int)firstwall_pos.y;
 	
 	while (isinthemap(vars, firstwall_grid))
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_y = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
-			printf("distance_y: %f\n", distance_y);
+			// printf("distance_y: %f\n", distance_y);
 			break ;
 		}
 		firstwall_pos.y--;
 		firstwall_pos.x += 1 / raydir_tan;
 		firstwall_grid.x = (int)firstwall_pos.x;
-		firstwall_grid.y = (int)firstwall_pos.y;
+		firstwall_grid.y = (int)firstwall_pos.y - 1;
 	}
 	distance = compare_distances(distance_x, distance_y);
 
@@ -183,20 +183,20 @@ double	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan)
 	firstwall_pos.x = (int)vecset.pos.x;
 	dx = vecset.pos.x - firstwall_pos.x;
 	firstwall_pos.y = vecset.pos.y + dx * raydir_tan;
-	firstwall_grid.x = (int)firstwall_pos.x;
+	firstwall_grid.x = (int)firstwall_pos.x - 1;
 	firstwall_grid.y = (int)firstwall_pos.y;
 	
 	while (isinthemap(vars, firstwall_grid))
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_x = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
 			break ;
 		}
 		firstwall_pos.x--;
 		firstwall_pos.y += raydir_tan;
-		firstwall_grid.x = (int)firstwall_pos.x;
+		firstwall_grid.x = (int)firstwall_pos.x - 1;
 		firstwall_grid.y = (int)firstwall_pos.y;
 	}
 	
@@ -210,9 +210,9 @@ double	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan)
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_y = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
-			printf("distance_y: %f\n", distance_y);
+			// printf("distance_y: %f\n", distance_y);
 			break ;
 		}
 		firstwall_pos.y++;
@@ -244,20 +244,20 @@ double	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan)
 	firstwall_pos.x = (int)vecset.pos.x;
 	dx = vecset.pos.x - firstwall_pos.x;
 	firstwall_pos.y = vecset.pos.y - dx * raydir_tan;
-	firstwall_grid.x = (int)firstwall_pos.x;
+	firstwall_grid.x = (int)firstwall_pos.x - 1;
 	firstwall_grid.y = (int)firstwall_pos.y;
 	
 	while (isinthemap(vars, firstwall_grid))
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("x encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_x = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
 			break ;
 		}
 		firstwall_pos.x--;
 		firstwall_pos.y -= raydir_tan;
-		firstwall_grid.x = (int)firstwall_pos.x;
+		firstwall_grid.x = (int)firstwall_pos.x - 1;
 		firstwall_grid.y = (int)firstwall_pos.y;
 	}
 	
@@ -265,21 +265,21 @@ double	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan)
 	dy = vecset.pos.y - firstwall_pos.y;
 	firstwall_pos.x = vecset.pos.x - dy / raydir_tan;
 	firstwall_grid.x = (int)firstwall_pos.x;
-	firstwall_grid.y = (int)firstwall_pos.y;
+	firstwall_grid.y = (int)firstwall_pos.y - 1;
 	
 	while (isinthemap(vars, firstwall_grid))
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
+			// printf("y encounter: x: %d y: %d\n", firstwall_grid.x, firstwall_grid.y);
 			distance_y = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
-			printf("distance_y: %f\n", distance_y);
+			// printf("distance_y: %f\n", distance_y);
 			break ;
 		}
 		firstwall_pos.y--;
 		firstwall_pos.x -= 1 / raydir_tan;
 		firstwall_grid.x = (int)firstwall_pos.x;
-		firstwall_grid.y = (int)firstwall_pos.y;
+		firstwall_grid.y = (int)firstwall_pos.y - 1;
 	}
 
 	distance = compare_distances(distance_x, distance_y);

@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 18:35:31 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/07 19:31:08 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static double	get_distance_to_the_wall(t_vars *vars, t_vec raydir)
 	double	distance;
 	double	raydir_tan;
 
-	(void) vars;
 	raydir_tan = fabs(raydir.y / raydir.x);
 	if (raydir.x > 0)
 	{
@@ -49,7 +48,7 @@ int	calculate_line_height(int i, t_vars *vars)
 	vecset = *vars->vecset;
 
 	k = 2 * (double)i / (double)WINDOW_WIDTH - 1;
-	printf("k: %f\n", k);
+	// printf("k: %f\n", k);
 
 	raydir.x = vecset.dir.x + k * vecset.plane.x;
 	raydir.y = vecset.dir.y + k * vecset.plane.y;
@@ -58,10 +57,10 @@ int	calculate_line_height(int i, t_vars *vars)
 	// printf("ly: %f\n", ly);
 
 	distance = get_distance_to_the_wall(vars, raydir);
-	printf("distance: %f\n", distance);
+	// printf("distance: %f\n", distance);
 	line_height = 0;
 	if (distance)
 		line_height = WINDOW_HEIGHT / distance;
-	printf("line_height: %f\n", line_height);
+	// printf("line_height: %f\n", line_height);
 	return (line_height);
 }
