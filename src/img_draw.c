@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:59:36 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/10 14:29:51 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/10 16:18:30 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,23 @@ static void	draw_line(int i, t_vars *vars, int line_height, int line_color)
 
 void	draw_image_with_color(t_vars *vars)
 {
-	int	i;
-	int	line_height;
-	int	line_color;
+	t_lineinfo	line_info;
+	int			i;
+	int			line_color;
+	int			colors[4];
 
 	i = 0;
-	line_height = WINDOW_HEIGHT;
-	line_color = (int)0xffffffff;
+/* this section will be removed later */
+	colors[0] = (int)0xffe62012; //NORTH red
+	colors[1] = (int)0xffe64e12; //SOUTH orange
+	colors[2] = (int)0xffe6d412; //EAST yellow
+	colors[3] = (int)0xff12e616; //WEST green
+/* ********************************** */
 	while (i < WINDOW_WIDTH)
 	{
-		line_height = calculate_line_height(i, vars);
-		draw_line(i, vars, line_height, line_color);
+		line_info = calculate_line_height(i, vars);
+		line_color = colors[line_info.hit_direction];
+		draw_line(i, vars, line_info.line_height, line_color);
 		i++;
 	}
 }

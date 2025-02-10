@@ -20,34 +20,44 @@ static int	isinthemap(t_vars *vars, t_grid grid)
 	return 0;
 }
 
-static double	compare_distances(double distance_x, double distance_y)
+static t_distanceinfo	compare_distances(double distance_x, double distance_y)
 {
-	double	distance;
+	t_distanceinfo dist_info;
 
-	distance = 0;
 	if (distance_x && distance_y)
 	{
 		if (distance_x < distance_y)
-			distance = distance_x;
+		{
+			dist_info.distance = distance_x;
+			dist_info.x_or_y = -1;
+		}
 		else
-			distance = distance_y;
+		{
+			dist_info.distance = distance_y;
+			dist_info.x_or_y = 1;
+		}
 	}
 	else
 	{
 		if (distance_x)
-			distance = distance_x;
-		else if (distance_y)
-			distance = distance_y;
+		{
+			dist_info.distance = distance_x;
+			dist_info.x_or_y = -1;
+		}
+		else
+		{
+			dist_info.distance = distance_y;
+			dist_info.x_or_y = 1;
+		}
 	}
-	return distance;
+	return dist_info;
 }
 
 //x>0 y>0
-double	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan)
+t_distanceinfo	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan)
 {
 	double		distance_x;
 	double		distance_y;
-	double		distance;
 	t_vec		firstwall_pos;
 	t_grid		firstwall_grid;
 	t_vecset	vecset;
@@ -98,17 +108,14 @@ double	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan)
 		firstwall_grid.x = (int)firstwall_pos.x;
 		firstwall_grid.y = (int)firstwall_pos.y;
 	}
-	distance = compare_distances(distance_x, distance_y);
-
-	return (distance);
+	return (compare_distances(distance_x, distance_y));
 }
 
 //x>0 y<0
-double	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan)
+t_distanceinfo	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan)
 {
 	double		distance_x;
 	double		distance_y;
-	double		distance;
 	t_vec		firstwall_pos;
 	t_grid		firstwall_grid;
 	t_vecset	vecset;
@@ -159,17 +166,14 @@ double	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan)
 		firstwall_grid.x = (int)firstwall_pos.x;
 		firstwall_grid.y = (int)firstwall_pos.y - 1;
 	}
-	distance = compare_distances(distance_x, distance_y);
-
-	return (distance);
+	return (compare_distances(distance_x, distance_y));
 }
 
 //x<0 y>0
-double	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan)
+t_distanceinfo	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan)
 {
 	double		distance_x;
 	double		distance_y;
-	double		distance;
 	t_vec		firstwall_pos;
 	t_grid		firstwall_grid;
 	t_vecset	vecset;
@@ -221,16 +225,14 @@ double	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan)
 		firstwall_grid.y = (int)firstwall_pos.y;
 	}
 
-	distance = compare_distances(distance_x, distance_y);
-	return (distance);
+	return (compare_distances(distance_x, distance_y));
 }
 
 //x<0 y<0
-double	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan)
+t_distanceinfo	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan)
 {
 	double		distance_x;
 	double		distance_y;
-	double		distance;
 	t_vec		firstwall_pos;
 	t_grid		firstwall_grid;
 	t_vecset	vecset;
@@ -282,6 +284,5 @@ double	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan)
 		firstwall_grid.y = (int)firstwall_pos.y - 1;
 	}
 
-	distance = compare_distances(distance_x, distance_y);
-	return (distance);
+	return (compare_distances(distance_x, distance_y));
 }

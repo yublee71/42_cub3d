@@ -6,16 +6,16 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/10 14:38:19 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/10 16:17:24 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 // raypos = pos + l * raydir
-static double	get_distance_to_the_wall(t_vars *vars, t_vec raydir)
+static t_distanceinfo	get_distance_to_the_wall(t_vars *vars, t_vec raydir)
 {
-	double	distance;
+	t_distanceinfo	distance;
 	double	raydir_tan;
 
 	raydir_tan = fabs(raydir.y / raydir.x);
@@ -37,11 +37,13 @@ static double	get_distance_to_the_wall(t_vars *vars, t_vec raydir)
 }
 
 // raydir = dir + k * plane
-int	calculate_line_height(int i, t_vars *vars)
+t_lineinfo	calculate_line_height(int i, t_vars *vars)
 {
+	t_lineinfo	line_info;
 	t_vecset	vecset;
 	t_vec		raydir;
 	double		k;
+	t_distanceinfo	dist_info;
 	double		distance;
 	double		distorted_angle;
 	int			line_height;
@@ -57,7 +59,23 @@ int	calculate_line_height(int i, t_vars *vars)
 	// printf("lx: %f\n", lx);
 	// printf("ly: %f\n", ly);
 
-	distance = get_distance_to_the_wall(vars, raydir);
+	dist_info = get_distance_to_the_wall(vars, raydir);
+
+	if (dist_info.x_or_y < 0)
+	{
+		if (raydir.x > 0)
+			line_info.hit_direction = 3;
+		else
+			line_info.hit_direction = 2;
+	}
+	else
+	{
+		if (raydir.y > 0)
+			line_info.hit_direction = 0;
+		else
+			line_info.hit_direction = 1;
+	}
+	distance = dist_info.distance;
 	if (i < WINDOW_WIDTH / 2)
 		distorted_angle = (double)FOV / 2 - i * (double)FOV / WINDOW_WIDTH;
 	else
@@ -71,5 +89,7 @@ int	calculate_line_height(int i, t_vars *vars)
 	if (distance)
 		line_height = WINDOW_HEIGHT / distance;
 	// printf("line_height: %f\n", line_height);
-	return (line_height);
+	line_info.line_height = line_height;
+
+	return (line_info);
 }
