@@ -6,15 +6,13 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/10 16:18:41 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/10 16:21:21 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* this section will be removed later */
-
-
+/* this section will be modified later */
 
 char *map[MAP_H + 1] = {
 	"111111",
