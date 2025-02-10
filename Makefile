@@ -6,12 +6,12 @@ CFLAGS			:= $(MANDATORY_FLAGS) $(DEBUG_FLAGS)
 
 SRCS			:= \
 					src/main.c \
-					src/keyhook.c \
-					src/img_utils.c \
+					src/init.c \
 					src/img_draw.c \
 					src/dda.c \
 					src/dda_cases.c \
-					src/utils.c \
+					src/keyhook.c \
+					src/utils_math.c \
 					src/exit.c \
 
 BUILD_DIR		:= build

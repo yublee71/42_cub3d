@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:52:21 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 21:41:55 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/10 14:32:10 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,4 @@ t_vec	rotate_vector(t_vec	vec, int degree)
 	rotated_vec.x = vec.x * cos(radian) - vec.y * sin(radian);
 	rotated_vec.y = vec.x * sin(radian) + vec.y * cos(radian);
 	return (rotated_vec);
-}
-
-int	err_msg(char *msg, int return_val)
-{
-	printf("%s", msg);
-	return (return_val);
 }

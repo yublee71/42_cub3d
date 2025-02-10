@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 21:42:02 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/10 14:34:24 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 # define STR_ERR_MLX_INIT		"Error: MLX initialization failed.\n"
 # define STR_ERR_WINDOW_INIT	"Error: Window initialization failed.\n"
+# define STR_ERR_IMG_INIT		"Error: Image initialization failed.\n"
+# define STR_ERR_IMG_OPEN		"Error: Image file open failed.\n"
 
 # define WINDOW_WIDTH	1280
 # define WINDOW_HEIGHT	720
@@ -31,6 +33,17 @@
 # define FOV			90
 # define MOVE_DISTANCE	10
 # define MOVE_ANGLE		6
+
+/* this section will be removed later */
+
+#define MAP_H 6
+#define MAP_W 6
+#define PATH_TO_IMAGE_N "./assets/n.xpm"
+#define PATH_TO_IMAGE_S "./assets/s.xpm"
+#define PATH_TO_IMAGE_E "./assets/e.xpm"
+#define PATH_TO_IMAGE_W "./assets/w.xpm"
+
+/* ********************************** */
 
 typedef struct s_grid
 {
@@ -78,31 +91,42 @@ typedef struct s_img
 
 typedef struct s_vars
 {
-	void		*mlx; //needs free
-	void		*win; //needs free
+	void		*mlx;
+	void		*win;
 	char		**map;
 	int			map_width;
 	int			map_height;
-	t_img		img; //needs free
-	t_img		assets[4]; //needs free
+	t_img		img;
+	t_img		assets[4];
 	t_vecset	*vecset;
 	t_colorset	colorset;
+	int			exit_no;
 }	t_vars;
 
+/*init*/
+void	initialize_cub3d(t_vars *vars);
+
+/*draw*/
 void	draw_image_with_color(t_vars *vars);
+
+/*calculate line height*/
 int		calculate_line_height(int i, t_vars *vars);
-t_img	get_img_from_file(char *file_name, t_vars vars);
+double	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan);
+double	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan);
+double	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan);
+double	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan);
+
+/*keyhook*/
 int		handle_key_input(int keysym, t_vars *vars);
-int		err_msg(char *msg, int return_val);
-int		close_game(t_vars *vars);
+
+/*math utils*/
 t_vec	rotate_vector(t_vec	vec, int degree);
 double	convert_deg_to_rad(double degree);
 double	get_vector_length(t_vec raydir);
 double	get_vector_to_vector_distance(t_vec vec1, t_vec vec2);
 
-double	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan);
-double	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan);
-double	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan);
-double	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan);
+/*exit*/
+int		err_msg(char *msg, int return_val);
+int		close_game(t_vars *vars);
 
 #endif
