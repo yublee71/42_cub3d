@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 22:24:34 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/10 14:38:19 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	calculate_line_height(int i, t_vars *vars)
 		// printf("i: %d\n", i);
 		// printf("angle: %f\n", cos(convert_deg_to_rad(distorted_angle)));
 
-	distance = distance * cos(convert_deg_to_rad(distorted_angle));
+	distance = 1.5 * distance * cos(convert_deg_to_rad(distorted_angle));
 	// printf("distance: %f\n", distance);
 	line_height = 0;
 	if (distance)
