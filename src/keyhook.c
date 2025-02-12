@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:59:25 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/07 18:40:02 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 16:50:50 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	rotate_vecset(t_vars *vars, int degree)
 	new_plane = rotate_vector(vars->vecset->plane, degree);
 	vars->vecset->dir = new_dir;
 	vars->vecset->plane = new_plane;
-	draw_image_with_color(vars);
+	draw_image(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);
 }
 

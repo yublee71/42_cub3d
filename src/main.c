@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/10 16:21:21 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 15:55:42 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int	main()
 	/*TODO: get from parser*/
 
 	initialize_cub3d(&vars);
-	draw_image_with_color(&vars);
+	// draw_image_with_color(&vars);
+	draw_image(&vars);
 
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
 

@@ -6,50 +6,55 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 14:02:23 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:00:58 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static t_lineinfo	compare_distances(double distance_x, double distance_y)
+static t_lineinfo	compare_distances(t_distinfo distance_x, t_distinfo distance_y)
 {
 	t_lineinfo line_info;
 
-	if (distance_x && distance_y)
+	if (distance_x.distance && distance_y.distance)
 	{
-		if (distance_x < distance_y)
+		if (distance_x.distance < distance_y.distance)
 		{
-			line_info.distance = distance_x;
+			line_info.distance = distance_x.distance;
+			line_info.d = distance_x.d;
 			line_info.x_or_y = -1;
 		}
 		else
 		{
-			line_info.distance = distance_y;
+			line_info.distance = distance_y.distance;
+			line_info.d = distance_y.d;
 			line_info.x_or_y = 1;
 		}
 	}
 	else
 	{
-		if (distance_x)
+		if (distance_x.distance)
 		{
-			line_info.distance = distance_x;
+			line_info.distance = distance_x.distance;
+			line_info.d = distance_x.d;
 			line_info.x_or_y = -1;
 		}
 		else
 		{
-			line_info.distance = distance_y;
+			line_info.distance = distance_y.distance;
+			line_info.d = distance_y.d;
 			line_info.x_or_y = 1;
 		}
 	}
 	return line_info;
 }
 
-static double		get_distance_to_the_wall_x(t_vars *vars, t_vec raydir, double raydir_tan)
+static	t_distinfo	get_distance_to_the_wall_x(t_vars *vars, t_vec raydir, double raydir_tan)
 {
 	t_vecset	vecset;
 	t_vec		firstwall_pos;
 	t_grid		firstwall_grid;
+	t_distinfo	dist_info;
 	double		dx;
 	double		distance_x;
 	int			sign_x;
@@ -85,14 +90,20 @@ static double		get_distance_to_the_wall_x(t_vars *vars, t_vec raydir, double ray
 			firstwall_grid.x = (int)firstwall_pos.x - 1;
 		firstwall_grid.y = (int)firstwall_pos.y;
 	}
-	return (distance_x);
+	dist_info.distance = distance_x;
+	if (sign_x > 0)
+		dist_info.d = fabs(firstwall_pos.y - firstwall_grid.y);
+	else
+		dist_info.d = 1 - fabs(firstwall_pos.y - firstwall_grid.y);
+	return (dist_info);
 }
 
-static double		get_distance_to_the_wall_y(t_vars *vars, t_vec raydir, double raydir_tan)
+static t_distinfo	get_distance_to_the_wall_y(t_vars *vars, t_vec raydir, double raydir_tan)
 {
 	t_vecset	vecset;
 	t_vec		firstwall_pos;
 	t_grid		firstwall_grid;
+	t_distinfo	dist_info;
 	double		distance_y;
 	double		dy;
 	int			sign_x;
@@ -128,13 +139,18 @@ static double		get_distance_to_the_wall_y(t_vars *vars, t_vec raydir, double ray
 		else
 			firstwall_grid.y = (int)firstwall_pos.y - 1;
 	}
-	return (distance_y);
+	dist_info.distance = distance_y;
+	if (sign_y > 0)
+		dist_info.d = 1 - fabs(firstwall_pos.x - firstwall_grid.x);
+	else
+		dist_info.d = fabs(firstwall_pos.x - firstwall_grid.x);
+	return (dist_info);
 }
 
 static t_lineinfo	get_distance_to_the_wall(t_vars *vars, t_vec raydir, double raydir_tan)
 {
-	double	distance_x;
-	double	distance_y;
+	t_distinfo	distance_x;
+	t_distinfo	distance_y;
 	
 	distance_x = get_distance_to_the_wall_x(vars, raydir, raydir_tan);
 	distance_y = get_distance_to_the_wall_y(vars, raydir, raydir_tan);
