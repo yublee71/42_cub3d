@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 13:50:22 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 14:02:23 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,37 @@
 
 static t_lineinfo	compare_distances(double distance_x, double distance_y)
 {
-	t_lineinfo dist_info;
+	t_lineinfo line_info;
 
 	if (distance_x && distance_y)
 	{
 		if (distance_x < distance_y)
 		{
-			dist_info.distance = distance_x;
-			dist_info.x_or_y = -1;
+			line_info.distance = distance_x;
+			line_info.x_or_y = -1;
 		}
 		else
 		{
-			dist_info.distance = distance_y;
-			dist_info.x_or_y = 1;
+			line_info.distance = distance_y;
+			line_info.x_or_y = 1;
 		}
 	}
 	else
 	{
 		if (distance_x)
 		{
-			dist_info.distance = distance_x;
-			dist_info.x_or_y = -1;
+			line_info.distance = distance_x;
+			line_info.x_or_y = -1;
 		}
 		else
 		{
-			dist_info.distance = distance_y;
-			dist_info.x_or_y = 1;
+			line_info.distance = distance_y;
+			line_info.x_or_y = 1;
 		}
 	}
-	return dist_info;
+	return line_info;
 }
 
-//x>0 y>0
 static double		get_distance_to_the_wall_x(t_vars *vars, t_vec raydir, double raydir_tan)
 {
 	t_vecset	vecset;
@@ -149,53 +148,38 @@ t_lineinfo	calculate_line_height(int i, t_vars *vars)
 	t_vecset	vecset;
 	t_vec		raydir;
 	double		k;
-	t_lineinfo	dist_info;
+	t_lineinfo	line_info;
 	double		distance;
 	double		distorted_angle;
 	int			line_height;
 
 	vecset = *vars->vecset;
-
 	k = 2 * (double)i / (double)WINDOW_WIDTH - 1;
-	// printf("k: %f\n", k);
-
 	raydir.x = vecset.dir.x + k * vecset.plane.x;
 	raydir.y = vecset.dir.y + k * vecset.plane.y;
-
-	// printf("lx: %f\n", lx);
-	// printf("ly: %f\n", ly);
-
-	dist_info = get_distance_to_the_wall(vars, raydir, fabs(raydir.y / raydir.x));
-
-	if (dist_info.x_or_y < 0)
+	line_info = get_distance_to_the_wall(vars, raydir, fabs(raydir.y / raydir.x));
+	if (line_info.x_or_y < 0)
 	{
 		if (raydir.x > 0)
-			dist_info.hit_direction = 3;
+			line_info.hit_direction = 3;
 		else
-			dist_info.hit_direction = 2;
+			line_info.hit_direction = 2;
 	}
 	else
 	{
 		if (raydir.y > 0)
-			dist_info.hit_direction = 0;
+			line_info.hit_direction = 0;
 		else
-			dist_info.hit_direction = 1;
+			line_info.hit_direction = 1;
 	}
-	distance = dist_info.distance;
 	if (i < WINDOW_WIDTH / 2)
 		distorted_angle = (double)FOV / 2 - i * (double)FOV / WINDOW_WIDTH;
 	else
 		distorted_angle = (double)FOV / 2 - (WINDOW_WIDTH - i) * (double)FOV / WINDOW_WIDTH;
-		// printf("i: %d\n", i);
-		// printf("angle: %f\n", cos(convert_deg_to_rad(distorted_angle)));
-
-	distance = 1.5 * distance * cos(convert_deg_to_rad(distorted_angle));
-	// printf("distance: %f\n", distance);
+	distance = 1.5 * line_info.distance * cos(convert_deg_to_rad(distorted_angle));
 	line_height = 0;
 	if (distance)
 		line_height = WINDOW_HEIGHT / distance;
-	// printf("line_height: %f\n", line_height);
-	dist_info.line_height = line_height;
-
-	return (dist_info);
+	line_info.line_height = line_height;
+	return (line_info);
 }
