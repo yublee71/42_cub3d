@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 15:55:42 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:30:47 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char *map[MAP_H + 1] = {
 	"111111",
 	"110011",
-	"100001",
+	"100101",
 	"10P001", //(2, 3) -> (2.5, 3.5)
 	"110011",
 	"111111",
@@ -93,7 +93,7 @@ int	main()
 	vars.map_width = MAP_W;
 	vecset = get_vecset(2.5, 3.5, NORTH);
 	vars.vecset = &vecset;
-	vars.colorset = get_colorset((int)0xff00ff00, (int)0xff0000ff);
+	vars.colorset = get_colorset((int)0xffe6dcd1, (int)0xff2b1904);
 	/*TODO: get from parser*/
 
 	initialize_cub3d(&vars);

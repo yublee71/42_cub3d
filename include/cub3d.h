@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 17:39:18 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:43:08 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define FOV			90
 # define MOVE_DISTANCE	10
 # define MOVE_ANGLE		6
+
+# define PLUS			1
+# define MINUS			-1
 
 /* this section will be removed later */
 
