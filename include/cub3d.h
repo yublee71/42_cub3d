@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/10 16:09:07 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 13:51:04 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,11 @@ typedef struct s_img
 
 typedef struct s_lineinfo
 {
+	double		distance;
 	int			line_height;
 	int			hit_direction;
-}	t_lineinfo;
-
-typedef struct s_distanceinfo
-{
-	double		distance;
 	int			x_or_y;
-}	t_distanceinfo;
+}	t_lineinfo;
 
 typedef struct s_vars
 {
@@ -123,10 +119,6 @@ void	draw_image_with_color(t_vars *vars);
 
 /*calculate line height*/
 t_lineinfo	calculate_line_height(int i, t_vars *vars);
-t_distanceinfo	get_distance_to_the_wall_case1(t_vars *vars, double raydir_tan);
-t_distanceinfo	get_distance_to_the_wall_case2(t_vars *vars, double raydir_tan);
-t_distanceinfo	get_distance_to_the_wall_case3(t_vars *vars, double raydir_tan);
-t_distanceinfo	get_distance_to_the_wall_case4(t_vars *vars, double raydir_tan);
 
 /*keyhook*/
 int		handle_key_input(int keysym, t_vars *vars);
@@ -136,6 +128,9 @@ t_vec	rotate_vector(t_vec	vec, int degree);
 double	convert_deg_to_rad(double degree);
 double	get_vector_length(t_vec raydir);
 double	get_vector_to_vector_distance(t_vec vec1, t_vec vec2);
+
+/*map utils*/
+int	isinthemap(t_vars *vars, t_grid grid);
 
 /*exit*/
 int		err_msg(char *msg, int return_val);

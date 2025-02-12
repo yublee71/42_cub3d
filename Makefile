@@ -9,9 +9,9 @@ SRCS			:= \
 					src/init.c \
 					src/img_draw.c \
 					src/dda.c \
-					src/dda_cases.c \
 					src/keyhook.c \
 					src/utils_math.c \
+					src/utils_map.c \
 					src/exit.c \
 
 BUILD_DIR		:= build
