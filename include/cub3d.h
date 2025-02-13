@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 18:48:58 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/13 17:21:53 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int		handle_key_input(int keysym, t_vars *vars);
 t_vec	rotate_vector(t_vec	vec, int degree);
 double	convert_deg_to_rad(double degree);
 double	get_vector_length(t_vec raydir);
-double	get_vector_to_vector_distance(t_vec vec1, t_vec vec2);
+double	get_line_to_point_distance(double tan, t_vec pos, t_vec dot);
 
 /*map utils*/
 int	isinthemap(t_vars *vars, t_grid grid);

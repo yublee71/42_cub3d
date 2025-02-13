@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:59:25 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 18:49:20 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/13 17:19:01 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ static void	move_player(t_vars *vars, int direction)
 	new_pos.y = vars->vecset->pos.y + vars->vecset->dir.y * direction * MOVE_DISTANCE;
 	new_grid.x = (int)new_pos.x;
 	new_grid.y = (int)new_pos.y;
-	if (isinthemap(vars, new_grid))
+	if (isinthemap(vars, new_grid) && vars->map[new_grid.y][new_grid.x] != '1')
 	{
 		vars->vecset->pos = new_pos;
 		draw_image(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);
 	}
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);
 }
 
 int	handle_key_input(int keysym, t_vars *vars)

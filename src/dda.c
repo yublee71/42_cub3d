@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 18:00:58 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/13 17:14:06 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static	t_distinfo	get_distance_to_the_wall_x(t_vars *vars, t_vec raydir, double 
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			distance_x = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
+			distance_x = get_line_to_point_distance((vecset.plane.y / vecset.plane.x), vecset.pos, firstwall_pos);
 			break ;
 		}
 		firstwall_pos.x += 1 * sign_x;
@@ -128,7 +128,7 @@ static t_distinfo	get_distance_to_the_wall_y(t_vars *vars, t_vec raydir, double 
 	{
 		if (vars->map[firstwall_grid.y][firstwall_grid.x] == '1')
 		{
-			distance_y = get_vector_to_vector_distance(vecset.pos, firstwall_pos);
+			distance_y = get_line_to_point_distance((vecset.plane.y / vecset.plane.x), vecset.pos, firstwall_pos);
 			break ;
 		}
 		firstwall_pos.y += 1 * sign_y;
@@ -166,8 +166,8 @@ t_lineinfo	calculate_line_height(int i, t_vars *vars)
 	double		k;
 	t_lineinfo	line_info;
 	double		distance;
-	double		distorted_angle;
-	int			line_height;
+	// double		distorted_angle;
+	double		line_height;
 
 	vecset = *vars->vecset;
 	k = 2 * (double)i / (double)WINDOW_WIDTH - 1;
@@ -188,11 +188,12 @@ t_lineinfo	calculate_line_height(int i, t_vars *vars)
 		else
 			line_info.hit_direction = 1;
 	}
-	if (i < WINDOW_WIDTH / 2)
-		distorted_angle = (double)FOV / 2 - i * (double)FOV / WINDOW_WIDTH;
-	else
-		distorted_angle = (double)FOV / 2 - (WINDOW_WIDTH - i) * (double)FOV / WINDOW_WIDTH;
-	distance = 1.5 * line_info.distance * cos(convert_deg_to_rad(distorted_angle));
+	// if (i < WINDOW_WIDTH / 2)
+	// 	distorted_angle = (double)FOV / 2 - i * (double)FOV / WINDOW_WIDTH;
+	// else
+	// 	distorted_angle = (double)FOV / 2 - (WINDOW_WIDTH - i) * (double)FOV / WINDOW_WIDTH;
+	// distance = 1.5 * line_info.distance * cos(convert_deg_to_rad(distorted_angle));
+	distance = 1.5 * line_info.distance;
 	line_height = 0;
 	if (distance)
 		line_height = WINDOW_HEIGHT / distance;
