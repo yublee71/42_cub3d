@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:59:36 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 17:45:14 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/13 16:08:30 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,23 @@ static void	put_img_to_img(t_img dst, t_img src, int x, int y, double pos_x, dou
 {
 	double	i;
 	double	j;
+	double	k;
 	int		pixel;
 
 	i = src.width * pos_x;
 	j = 0;
+	k = 0;
+	if (src.height * scale_y > WINDOW_HEIGHT)
+		k = - (src.height * scale_y - WINDOW_HEIGHT) / 2;
 	while (j < src.height * scale_y)
 	{
 		pixel = get_pixel_img(src, i, j / scale_y);
-		put_pixel_img(dst, x, y + j, pixel);
+		if (k >= 0)
+		{
+			put_pixel_img(dst, x, y + k, pixel);
+		}
 		j++;
+		k++;
 	}
 }
 
