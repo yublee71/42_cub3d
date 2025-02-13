@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/13 17:14:06 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/13 17:57:59 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ t_lineinfo	calculate_line_height(int i, t_vars *vars)
 	// else
 	// 	distorted_angle = (double)FOV / 2 - (WINDOW_WIDTH - i) * (double)FOV / WINDOW_WIDTH;
 	// distance = 1.5 * line_info.distance * cos(convert_deg_to_rad(distorted_angle));
-	distance = 1.5 * line_info.distance;
+	distance = 2 * line_info.distance;
 	line_height = 0;
 	if (distance)
 		line_height = WINDOW_HEIGHT / distance;

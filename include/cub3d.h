@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/13 17:21:53 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/13 18:16:08 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define WINDOW_HEIGHT	720
 
 # define FOV			90
-# define MOVE_DISTANCE	0.5
+# define MOVE_DISTANCE	0.2
 # define MOVE_ANGLE		6
 
 # define PLUS			1
