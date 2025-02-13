@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:59:25 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/12 18:44:34 by yublee           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:49:20 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	move_player(t_vars *vars, int direction)
 	t_vec	new_pos;
 	t_grid	new_grid;
 
-	new_pos.x = vars->vecset->pos.x + vars->vecset->dir.x * direction;
-	new_pos.y = vars->vecset->pos.y + vars->vecset->dir.y * direction;
+	new_pos.x = vars->vecset->pos.x + vars->vecset->dir.x * direction * MOVE_DISTANCE;
+	new_pos.y = vars->vecset->pos.y + vars->vecset->dir.y * direction * MOVE_DISTANCE;
 	new_grid.x = (int)new_pos.x;
 	new_grid.y = (int)new_pos.y;
 	if (isinthemap(vars, new_grid))
@@ -46,13 +46,13 @@ int	handle_key_input(int keysym, t_vars *vars)
 {
 	if (keysym == XK_Escape)
 		close_game(vars);
-	else if (keysym == XK_d) //TODO: change to wasd
+	else if (keysym == XK_d)
 		rotate_vecset(vars, MOVE_ANGLE);
-	else if (keysym == XK_a) //TODO: change to wasd
+	else if (keysym == XK_a)
 		rotate_vecset(vars, -MOVE_ANGLE);
-	else if (keysym == XK_w) //TODO: change to wasd
+	else if (keysym == XK_w)
 		move_player(vars, PLUS);
-	else if (keysym == XK_s) //TODO: change to wasd
+	else if (keysym == XK_s)
 		move_player(vars, MINUS);
 	return (0);
 }
