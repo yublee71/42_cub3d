@@ -6,13 +6,13 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:59:36 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/09 14:59:51 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/09 18:44:58 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	put_pixel_img(t_img img, int x, int y, int color)
+static void	put_pixel_to_img(t_img img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -32,24 +32,29 @@ static unsigned int	get_pixel_img(t_img img, int x, int y)
 			+ (y * img.size_line) + (x * img.bits_per_pixel / 8))));
 }
 
-static void	put_img_to_img(t_img dst, t_img src, int x, int y, double pos_x, double scale_y)
+static void	put_asset_to_img(t_vars *vars, t_lineinfo line_info, int x, int y)
 {
-	double	i;
+	t_img	dst;
+	t_img	src;
+	double	scale_y;
 	double	j;
 	double	k;
-	int		pixel;
 
-	i = src.width * pos_x;
+	dst = vars->img;
+	src = vars->assets[line_info.distance_info.hit_direction];
+	scale_y = (double)line_info.line_height
+		/ vars->assets[line_info.distance_info.hit_direction].height;
 	j = 0;
 	k = 0;
 	if (src.height * scale_y > WINDOW_HEIGHT)
 		k = - (src.height * scale_y - WINDOW_HEIGHT) / 2;
 	while (j < src.height * scale_y)
 	{
-		pixel = get_pixel_img(src, i, j / scale_y);
 		if (k >= 0)
 		{
-			put_pixel_img(dst, x, y + k, pixel);
+			put_pixel_to_img(dst, x, y + k,
+				get_pixel_img(src, src.width
+					* line_info.distance_info.distance_to_grid, j / scale_y));
 		}
 		j++;
 		k++;
@@ -65,14 +70,14 @@ static void	draw_line(int i, t_vars *vars, t_lineinfo line_info)
 	j = 0;
 	while (j < ceiling_height)
 	{
-		put_pixel_img(vars->img, i, j, vars->colorset.color_ceiling);
+		put_pixel_to_img(vars->img, i, j, vars->colorset.color_ceiling);
 		j++;
 	}
-	put_img_to_img(vars->img, vars->assets[line_info.distance_info.hit_direction], i, j, line_info.distance_info.distance_to_grid, (double)line_info.line_height / vars->assets[line_info.distance_info.hit_direction].height);
+	put_asset_to_img(vars, line_info, i, j);
 	j += line_info.line_height;
 	while (j < WINDOW_HEIGHT)
 	{
-		put_pixel_img(vars->img, i, j, vars->colorset.color_floor);
+		put_pixel_to_img(vars->img, i, j, vars->colorset.color_floor);
 		j++;
 	}
 }
