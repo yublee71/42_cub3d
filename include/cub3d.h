@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/13 18:16:08 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/09 12:53:00 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define WINDOW_WIDTH	1280
 # define WINDOW_HEIGHT	720
 
-# define FOV			90
+# define FOV			90 //Field of View
 # define MOVE_DISTANCE	0.2
 # define MOVE_ANGLE		6
 
@@ -39,12 +39,12 @@
 
 /* this section will be removed later */
 
-#define MAP_H 6
-#define MAP_W 6
-#define PATH_TO_IMAGE_N "./assets/n.xpm"
-#define PATH_TO_IMAGE_S "./assets/s.xpm"
-#define PATH_TO_IMAGE_E "./assets/e.xpm"
-#define PATH_TO_IMAGE_W "./assets/w.xpm"
+# define MAP_H 6
+# define MAP_W 6
+# define PATH_TO_IMAGE_N "./assets/n.xpm"
+# define PATH_TO_IMAGE_S "./assets/s.xpm"
+# define PATH_TO_IMAGE_E "./assets/e.xpm"
+# define PATH_TO_IMAGE_W "./assets/w.xpm"
 
 /* ********************************** */
 
@@ -122,28 +122,28 @@ typedef struct s_vars
 }	t_vars;
 
 /*init*/
-void	initialize_cub3d(t_vars *vars);
+void		initialize_cub3d(t_vars *vars);
 
 /*draw*/
-void	draw_image(t_vars *vars);
+void		draw_image(t_vars *vars);
 
 /*calculate line height*/
 t_lineinfo	calculate_line_height(int i, t_vars *vars);
 
 /*keyhook*/
-int		handle_key_input(int keysym, t_vars *vars);
+int			handle_key_input(int keysym, t_vars *vars);
 
 /*math utils*/
-t_vec	rotate_vector(t_vec	vec, int degree);
-double	convert_deg_to_rad(double degree);
-double	get_vector_length(t_vec raydir);
-double	get_line_to_point_distance(double tan, t_vec pos, t_vec dot);
+t_vec		rotate_vector(t_vec	vec, int degree);
+double		convert_deg_to_rad(double degree);
+double		get_vector_length(t_vec raydir);
+double		get_line_to_point_distance(double tan, t_vec pos, t_vec dot);
 
 /*map utils*/
-int	isinthemap(t_vars *vars, t_grid grid);
+int			isinthemap(t_vars *vars, t_grid grid);
 
 /*exit*/
-int		err_msg(char *msg, int return_val);
-int		close_game(t_vars *vars);
+int			err_msg(char *msg, int return_val);
+int			close_game(t_vars *vars);
 
 #endif
