@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/09 12:53:00 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/09 14:31:12 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,18 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_lineinfo
-{
-	double		distance;
-	double		d;
-	int			line_height;
-	int			hit_direction;
-	int			x_or_y;
-}	t_lineinfo;
-
 typedef struct s_distinfo
 {
-	double	distance;
-	double	d;
+	double		distance_to_wall;
+	double		distance_to_grid;
+	t_cardinal	hit_direction;
 }	t_distinfo;
+
+typedef struct s_lineinfo
+{
+	t_distinfo	distance_info;
+	int			line_height;
+}	t_lineinfo;
 
 typedef struct s_vars
 {
@@ -128,7 +126,7 @@ void		initialize_cub3d(t_vars *vars);
 void		draw_image(t_vars *vars);
 
 /*calculate line height*/
-t_lineinfo	calculate_line_height(int i, t_vars *vars);
+t_lineinfo	get_line_info_by_dda(int i, t_vars *vars);
 
 /*keyhook*/
 int			handle_key_input(int keysym, t_vars *vars);

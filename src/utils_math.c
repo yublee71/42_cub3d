@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:52:21 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/13 17:21:49 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/09 14:55:19 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double	get_vector_length(t_vec raydir)
 {
 	double	length;
-	
+
 	length = sqrt(pow(raydir.x, 2) + pow(raydir.y, 2));
 	return (length);
 }
@@ -24,7 +24,8 @@ double	get_line_to_point_distance(double tan, t_vec pos, t_vec dot)
 {
 	double	distance;
 
-	distance = fabs(tan * dot.x - dot.y - tan * pos.x + pos.y) / sqrt(pow(tan, 2) + 1);
+	distance = fabs(tan * dot.x - dot.y - tan * pos.x + pos.y)
+		/ sqrt(pow(tan, 2) + 1);
 	return (distance);
 }
 

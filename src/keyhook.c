@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:59:25 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/13 17:19:01 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/09 14:59:04 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ static void	rotate_vecset(t_vars *vars, int degree)
 
 static void	move_player(t_vars *vars, int direction)
 {
-	t_vec	new_pos;
-	t_grid	new_grid;
+	t_vecset	vecset;
+	t_vec		new_pos;
+	t_grid		new_grid;
 
-	new_pos.x = vars->vecset->pos.x + vars->vecset->dir.x * direction * MOVE_DISTANCE;
-	new_pos.y = vars->vecset->pos.y + vars->vecset->dir.y * direction * MOVE_DISTANCE;
+	vecset = *vars->vecset;
+	new_pos.x = vecset.pos.x + vecset.dir.x * direction * MOVE_DISTANCE;
+	new_pos.y = vecset.pos.y + vecset.dir.y * direction * MOVE_DISTANCE;
 	new_grid.x = (int)new_pos.x;
 	new_grid.y = (int)new_pos.y;
 	if (isinthemap(vars, new_grid) && vars->map[new_grid.y][new_grid.x] != '1')
 	{
-		vars->vecset->pos = new_pos;
+		vecset.pos = new_pos;
 		draw_image(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);
 	}

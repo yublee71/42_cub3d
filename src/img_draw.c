@@ -6,11 +6,11 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:59:36 by yublee            #+#    #+#             */
-/*   Updated: 2025/02/13 16:08:30 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/09 14:59:51 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/cub3d.h"
+#include "../include/cub3d.h"
 
 static void	put_pixel_img(t_img img, int x, int y, int color)
 {
@@ -68,7 +68,7 @@ static void	draw_line(int i, t_vars *vars, t_lineinfo line_info)
 		put_pixel_img(vars->img, i, j, vars->colorset.color_ceiling);
 		j++;
 	}
-	put_img_to_img(vars->img, vars->assets[line_info.hit_direction], i, j, line_info.d,(double)line_info.line_height/vars->assets[line_info.hit_direction].height);
+	put_img_to_img(vars->img, vars->assets[line_info.distance_info.hit_direction], i, j, line_info.distance_info.distance_to_grid, (double)line_info.line_height / vars->assets[line_info.distance_info.hit_direction].height);
 	j += line_info.line_height;
 	while (j < WINDOW_HEIGHT)
 	{
@@ -85,7 +85,7 @@ void	draw_image(t_vars *vars)
 	i = 0;
 	while (i < WINDOW_WIDTH)
 	{
-		line_info = calculate_line_height(i, vars);
+		line_info = get_line_info_by_dda(i, vars);
 		draw_line(i, vars, line_info);
 		i++;
 	}
