@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
+/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/09 15:33:19 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/18 22:17:06 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,9 @@ int			isinthemap(t_vars *vars, t_grid grid);
 /*exit*/
 int			err_msg(char *msg, int return_val);
 int			close_game(t_vars *vars);
+
+//
+t_vecset	get_vecset(double pos_x, double pos_y, t_cardinal direction);
+int			vars_parser(t_vars *vars, char *path);
 
 #endif

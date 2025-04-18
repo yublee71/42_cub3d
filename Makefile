@@ -14,6 +14,7 @@ SRCS			:= \
 					src/utils_math.c \
 					src/utils_map.c \
 					src/exit.c \
+					src/parser.c \
 
 BUILD_DIR		:= build
 OBJS			:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
