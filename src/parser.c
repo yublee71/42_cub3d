@@ -6,12 +6,13 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:25:43 by mayeung           #+#    #+#             */
-/*   Updated: 2025/04/18 22:11:04 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/04/19 12:40:06 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include <fcntl.h>
+#include <limits.h>
 #define YES 1
 #define NO 0
 #define ERR 1
@@ -228,6 +229,8 @@ int	map_line_handler(t_parse *parse, char *line)
 	parse->vars->map_height++;
 	if (ft_strlen(line) > (size_t)parse->vars->map_width)
 		parse->vars->map_width = ft_strlen(line);
+	if (parse->vars->map_height == INT_MAX || parse->vars->map_width == INT_MAX)
+		return (ERR);
 	new = ft_lstnew(ft_strdup(line));
 	if (!new)
 		return (ERR);
