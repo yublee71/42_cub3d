@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/09 15:33:19 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:54:01 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ t_lineinfo	get_line_info_by_dda(int i, t_vars *vars);
 
 /*calculate distance*/
 t_distinfo	choose_dist(t_distinfo d_x, t_distinfo d_y, t_vec raydir);
-t_distinfo	get_dist_info_x(t_vars *vars, t_vec raydir, double raydir_tan);
-t_distinfo	get_dist_info_y(t_vars *vars, t_vec raydir, double raydir_tan);
+t_distinfo	get_dist_info_x(t_vars *vars, t_vecset vecset, t_vec raydir, t_grid sign);
+t_distinfo	get_dist_info_y(t_vars *vars, t_vecset vecset, t_vec raydir, t_grid sign);
 
 /*keyhook*/
 int			handle_key_input(int keysym, t_vars *vars);

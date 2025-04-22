@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/09 15:30:42 by yublee           ###   ########.fr       */
+/*   Updated: 2025/04/22 16:00:00 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 static t_lineinfo	calculate_by_dda(t_vars *vars, t_vec raydir)
 {
-	double		raydir_tan;
+	t_vecset	vecset;
+	t_grid		sign;
 	t_distinfo	distance_x;
 	t_distinfo	distance_y;
 	t_lineinfo	line_info;
-	double		line_height;
 
-	raydir_tan = fabs(raydir.y / raydir.x);
-	distance_x = get_dist_info_x(vars, raydir, raydir_tan);
-	distance_y = get_dist_info_y(vars, raydir, raydir_tan);
+	vecset = *vars->vecset;
+	sign.x = raydir.x / fabs(raydir.x);
+	sign.y = raydir.y / fabs(raydir.y);
+	distance_x = get_dist_info_x(vars, vecset, raydir, sign);
+	distance_y = get_dist_info_y(vars, vecset, raydir, sign);
 	line_info.distance_info = choose_dist(distance_x, distance_y, raydir);
-	line_height = 0;
+	line_info.line_height = 0;
 	if (line_info.distance_info.distance_to_wall)
-		line_height = WINDOW_HEIGHT / line_info.distance_info.distance_to_wall;
-	line_info.line_height = line_height;
+		line_info.line_height
+			= WINDOW_HEIGHT / line_info.distance_info.distance_to_wall;
 	return (line_info);
 }
 
