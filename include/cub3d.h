@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/06 17:31:13 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 17:51:52 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ int			close_game(t_vars *vars);
 t_vecset	get_vecset(double pos_x, double pos_y, t_cardinal direction);
 
 /*parser*/
+int			check_map_name(char *path);
 char		*parser_get_next_line(int fd);
 int			vars_parser(t_vars *vars, char *path);
 char		*ft_remove_space(char *line);

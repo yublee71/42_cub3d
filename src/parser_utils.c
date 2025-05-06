@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_tidyup.c                                    :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:26:50 by mayeung           #+#    #+#             */
-/*   Updated: 2025/05/06 16:36:15 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 17:51:13 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,17 @@ void	empty_function(void *arg)
 void	free_content(void *arg)
 {
 	free(arg);
+}
+
+int	check_map_name(char *path)
+{
+	if (!path)
+		return (ft_putstr_fd("Null argument\n", STDERR_FILENO), ERR);
+	if (!path || ft_strlen(path) < ft_strlen(".cub"))
+		return (ft_putstr_fd("File name too short\n", STDERR_FILENO), ERR);
+	if (!ft_strrchr(path, '.')
+		|| ft_strncmp(ft_strrchr(path, '.'), ".cub", ft_strlen(".cub") + 1))
+		return (ft_putstr_fd("File name not end with .cub\n", STDERR_FILENO),
+			ERR);
+	return (OK);
 }

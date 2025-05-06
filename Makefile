@@ -20,7 +20,7 @@ SRCS			:= \
 					src/parser_map.c \
 					src/parser_texture_colour.c \
 					src/parser_texture.c \
-					src/parser_tidyup.c \
+					src/parser_utils.c \
 					src/parser.c \
 
 BUILD_DIR		:= build

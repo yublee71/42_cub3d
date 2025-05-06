@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/06 17:29:27 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 17:54:38 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	main(int argc, char **argv)
 	vars.vecset = &vecset;
 	vecset.pos.x = -1;
 	vecset.pos.y = -1;
+	if (check_map_name(argv[1]))
+		return (close_game(&vars), 1);
 	if (vars_parser(&vars, argv[1]))
 		return (close_game(&vars), 1);
 	draw_image(&vars);
