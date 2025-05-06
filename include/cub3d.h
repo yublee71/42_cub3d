@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/22 16:58:35 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 17:31:13 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,10 @@ t_lineinfo	get_line_info_by_dda(int i, t_vars *vars);
 
 /*calculate distance*/
 t_distinfo	choose_dist(t_distinfo d_x, t_distinfo d_y, t_vec raydir);
-t_distinfo	get_dist_info_x(t_vars *vars, t_vecset vecset, t_vec raydir, t_grid sign);
-t_distinfo	get_dist_info_y(t_vars *vars, t_vecset vecset, t_vec raydir, t_grid sign);
+t_distinfo	get_dist_info_x(t_vars *vars, t_vecset vecset,
+				t_vec raydir, t_grid sign);
+t_distinfo	get_dist_info_y(t_vars *vars, t_vecset vecset,
+				t_vec raydir, t_grid sign);
 
 /*keyhook*/
 int			handle_key_input(int keysym, t_vars *vars);
@@ -171,9 +173,11 @@ int			close_game(t_vars *vars);
 t_vecset	get_vecset(double pos_x, double pos_y, t_cardinal direction);
 
 /*parser*/
+char		*parser_get_next_line(int fd);
 int			vars_parser(t_vars *vars, char *path);
 char		*ft_remove_space(char *line);
 void		empty_function(void *arg);
+void		free_content(void *arg);
 int			copy_to_map(t_parse *parse);
 int			need_more_texture_colour(t_parse *parse);
 int			texture_colour_handler(t_parse *parse, char *line);

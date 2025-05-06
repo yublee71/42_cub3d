@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:25:43 by mayeung           #+#    #+#             */
-/*   Updated: 2025/04/22 16:28:40 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 16:43:02 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	read_line_from_fd(t_parse *parse, int fd)
 	int		is_err;
 
 	is_err = NO;
-	line = remove_newline_char(get_next_line(fd));
+	line = remove_newline_char(parser_get_next_line(fd));
 	while (line && !is_err)
 	{
 		if (need_more_texture_colour(parse))
@@ -40,7 +40,7 @@ int	read_line_from_fd(t_parse *parse, int fd)
 		else
 			is_err = map_line_handler(parse, line);
 		free(line);
-		line = remove_newline_char(get_next_line(fd));
+		line = remove_newline_char(parser_get_next_line(fd));
 	}
 	if (is_err)
 		return (free(line), ERR);
@@ -74,10 +74,10 @@ int	vars_parser(t_vars *vars, char *path)
 	is_err = read_line_from_fd(&parse, fd);
 	close(fd);
 	if (is_err)
-		return (ft_lstclear(&parse.map, empty_function),
+		return (ft_lstclear(&parse.map, free_content),
 			ft_putstr_fd("Parse error\n", STDERR_FILENO), ERR);
 	if (copy_to_map(&parse))
-		return (ft_lstclear(&parse.map, empty_function), ERR);
+		return (ft_lstclear(&parse.map, free_content), ERR);
 	ft_lstclear(&parse.map, empty_function);
 	if (not_enough_data(&parse))
 		return (ft_putstr_fd("Not enough info\n", STDERR_FILENO), ERR);

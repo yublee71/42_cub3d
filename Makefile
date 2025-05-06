@@ -15,6 +15,7 @@ SRCS			:= \
 					src/utils_map.c \
 					src/exit.c \
 					src/parser_colour.c \
+					src/parser_gnl.c \
 					src/parser_map_enclosed.c \
 					src/parser_map.c \
 					src/parser_texture_colour.c \

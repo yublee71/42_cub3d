@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:26:50 by mayeung           #+#    #+#             */
-/*   Updated: 2025/04/22 16:32:41 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 16:36:15 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,9 @@ int	copy_to_map(t_parse *parse)
 void	empty_function(void *arg)
 {
 	(void)arg;
+}
+
+void	free_content(void *arg)
+{
+	free(arg);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
+/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:17:35 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/09 14:53:40 by yublee           ###   ########.fr       */
+/*   Updated: 2025/05/06 16:30:43 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int	close_game(t_vars *vars)
 		}
 		mlx_destroy_display(vars->mlx);
 		free(vars->mlx);
+		i = 0;
+		while (vars->map && vars->map[i])
+			free(vars->map[i++]);
+		free(vars->map);
 	}
 	exit(vars->exit_no);
 	return (0);
