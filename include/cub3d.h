@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
+/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/22 15:54:01 by yublee           ###   ########.fr       */
+/*   Updated: 2025/05/06 17:51:52 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <math.h>
 # include <X11/keysymdef.h>
 # include <X11/keysym.h>
+# include <fcntl.h>
+# include <limits.h>
 
 # define STR_ERR_MLX_INIT		"Error: MLX initialization failed.\n"
 # define STR_ERR_WINDOW_INIT	"Error: Window initialization failed.\n"
@@ -36,6 +38,11 @@
 
 # define PLUS			1
 # define MINUS			-1
+
+# define YES 			1
+# define NO 			0
+# define ERR 			1
+# define OK 			0
 
 /* this section will be removed later */
 
@@ -119,6 +126,17 @@ typedef struct s_vars
 	int			exit_no;
 }	t_vars;
 
+typedef struct s_parse
+{
+	int			num_texture_colour;
+	int			dir[4];
+	int			ceiling;
+	int			floor;
+	t_cardinal	facing;
+	t_list		*map;
+	t_vars		*vars;
+}	t_parse;
+
 /*init*/
 void		initialize_cub3d(t_vars *vars);
 
@@ -130,8 +148,10 @@ t_lineinfo	get_line_info_by_dda(int i, t_vars *vars);
 
 /*calculate distance*/
 t_distinfo	choose_dist(t_distinfo d_x, t_distinfo d_y, t_vec raydir);
-t_distinfo	get_dist_info_x(t_vars *vars, t_vecset vecset, t_vec raydir, t_grid sign);
-t_distinfo	get_dist_info_y(t_vars *vars, t_vecset vecset, t_vec raydir, t_grid sign);
+t_distinfo	get_dist_info_x(t_vars *vars, t_vecset vecset,
+				t_vec raydir, t_grid sign);
+t_distinfo	get_dist_info_y(t_vars *vars, t_vecset vecset,
+				t_vec raydir, t_grid sign);
 
 /*keyhook*/
 int			handle_key_input(int keysym, t_vars *vars);
@@ -148,5 +168,24 @@ int			isinthemap(t_vars *vars, t_grid grid);
 /*exit*/
 int			err_msg(char *msg, int return_val);
 int			close_game(t_vars *vars);
+
+/*vecset*/
+t_vecset	get_vecset(double pos_x, double pos_y, t_cardinal direction);
+
+/*parser*/
+int			check_map_name(char *path);
+char		*parser_get_next_line(int fd);
+int			vars_parser(t_vars *vars, char *path);
+char		*ft_remove_space(char *line);
+void		empty_function(void *arg);
+void		free_content(void *arg);
+int			copy_to_map(t_parse *parse);
+int			need_more_texture_colour(t_parse *parse);
+int			texture_colour_handler(t_parse *parse, char *line);
+int			map_line_handler(t_parse *parse, char *line);
+int			map_not_closed(t_vars *vars);
+int			texture_handler(t_parse *parse, char *line, int type);
+int			colour_handler(t_parse *parse, char *line, int *colour, int *type);
+void		revert_map(t_vars *vars);
 
 #endif

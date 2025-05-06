@@ -14,6 +14,14 @@ SRCS			:= \
 					src/utils_math.c \
 					src/utils_map.c \
 					src/exit.c \
+					src/parser_colour.c \
+					src/parser_gnl.c \
+					src/parser_map_enclosed.c \
+					src/parser_map.c \
+					src/parser_texture_colour.c \
+					src/parser_texture.c \
+					src/parser_utils.c \
+					src/parser.c \
 
 BUILD_DIR		:= build
 OBJS			:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
