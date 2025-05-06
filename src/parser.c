@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:25:43 by mayeung           #+#    #+#             */
-/*   Updated: 2025/05/06 16:43:02 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 18:23:29 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,23 @@ int	vars_parser(t_vars *vars, char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (ft_putstr_fd("Can't open file\n", STDERR_FILENO), ERR);
+		return (err_msg("Error: Can't open file\n", ERR));
 	ft_bzero(&parse, sizeof(t_parse));
 	parse.vars = vars;
 	is_err = read_line_from_fd(&parse, fd);
 	close(fd);
 	if (is_err)
 		return (ft_lstclear(&parse.map, free_content),
-			ft_putstr_fd("Parse error\n", STDERR_FILENO), ERR);
+			err_msg("Error: Parse error\n", ERR));
 	if (copy_to_map(&parse))
 		return (ft_lstclear(&parse.map, free_content), ERR);
 	ft_lstclear(&parse.map, empty_function);
 	if (not_enough_data(&parse))
-		return (ft_putstr_fd("Not enough info\n", STDERR_FILENO), ERR);
+		return (err_msg("Error: Not enough info\n", ERR));
 	*(vars->vecset) = get_vecset(vars->vecset->pos.x,
 			vars->vecset->pos.y, parse.facing);
 	if (map_not_closed(vars))
-		return (ft_putstr_fd("Map not closed\n", STDERR_FILENO), ERR);
+		return (err_msg("Error: Map not closed\n", ERR));
 	revert_map(vars);
 	return (OK);
 }

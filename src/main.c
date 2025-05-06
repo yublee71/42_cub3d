@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/06 17:54:38 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 18:21:42 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&vars, sizeof(t_vars));
 	if (argc != 2)
-		return (1);
+		return (err_msg("Error: Incorrect number of arguments\n", 1));
 	initialize_cub3d(&vars);
 	vars.vecset = &vecset;
 	vecset.pos.x = -1;

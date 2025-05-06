@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:26:50 by mayeung           #+#    #+#             */
-/*   Updated: 2025/05/06 17:51:13 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/06 18:25:04 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	free_content(void *arg)
 int	check_map_name(char *path)
 {
 	if (!path)
-		return (ft_putstr_fd("Null argument\n", STDERR_FILENO), ERR);
+		return (err_msg("Error: Null argument\n", ERR));
 	if (!path || ft_strlen(path) < ft_strlen(".cub"))
-		return (ft_putstr_fd("File name too short\n", STDERR_FILENO), ERR);
+		return (err_msg("Error: File name too short\n", ERR));
 	if (!ft_strrchr(path, '.')
 		|| ft_strncmp(ft_strrchr(path, '.'), ".cub", ft_strlen(".cub") + 1))
-		return (ft_putstr_fd("File name not end with .cub\n", STDERR_FILENO),
-			ERR);
+		return (err_msg("Error: File name not end with .cub\n",
+				ERR));
 	return (OK);
 }
