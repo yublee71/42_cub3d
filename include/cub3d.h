@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/06 17:51:52 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/10 21:04:57 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,13 @@
 # define WINDOW_HEIGHT	720
 
 # define FOV			90 //Field of View
-# define MOVE_DISTANCE	0.2
+# define MOV_DIS		0.2
 # define MOVE_ANGLE		6
-
-# define PLUS			1
-# define MINUS			-1
 
 # define YES 			1
 # define NO 			0
 # define ERR 			1
 # define OK 			0
-
-/* this section will be removed later */
-
-# define MAP_H 6
-# define MAP_W 6
-# define PATH_TO_IMAGE_N "./assets/n.xpm"
-# define PATH_TO_IMAGE_S "./assets/s.xpm"
-# define PATH_TO_IMAGE_E "./assets/e.xpm"
-# define PATH_TO_IMAGE_W "./assets/w.xpm"
-
-/* ********************************** */
 
 typedef struct s_grid
 {
