@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
+/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:59:36 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/09 18:44:58 by yublee           ###   ########.fr       */
+/*   Updated: 2025/05/10 19:51:16 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,16 @@ static void	put_asset_to_img(t_vars *vars, t_lineinfo line_info, int x, int y)
 	src = vars->assets[line_info.distance_info.hit_direction];
 	scale_y = (double)line_info.line_height
 		/ vars->assets[line_info.distance_info.hit_direction].height;
-	j = 0;
 	k = 0;
 	if (src.height * scale_y > WINDOW_HEIGHT)
 		k = - (src.height * scale_y - WINDOW_HEIGHT) / 2;
-	while (j < src.height * scale_y)
+	j = fabs(k);
+	k = 0;
+	while (j < src.height * scale_y && y + k < WINDOW_HEIGHT)
 	{
-		if (k >= 0)
-		{
-			put_pixel_to_img(dst, x, y + k,
-				get_pixel_img(src, src.width
-					* line_info.distance_info.distance_to_grid, j / scale_y));
-		}
+		put_pixel_to_img(dst, x, y + k,
+			get_pixel_img(src, src.width
+				* line_info.distance_info.distance_to_grid, j / scale_y));
 		j++;
 		k++;
 	}
