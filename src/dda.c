@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:48:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/04/22 16:00:00 by yublee           ###   ########.fr       */
+/*   Updated: 2025/05/10 16:31:32 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static t_lineinfo	calculate_by_dda(t_vars *vars, t_vec raydir)
 	t_lineinfo	line_info;
 
 	vecset = *vars->vecset;
-	sign.x = raydir.x / fabs(raydir.x);
-	sign.y = raydir.y / fabs(raydir.y);
+	sign.x = (int)copysign(1.0, raydir.x);
+	sign.y = (int)copysign(1.0, raydir.y);
 	distance_x = get_dist_info_x(vars, vecset, raydir, sign);
 	distance_y = get_dist_info_y(vars, vecset, raydir, sign);
 	line_info.distance_info = choose_dist(distance_x, distance_y, raydir);
