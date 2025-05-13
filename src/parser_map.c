@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:20:10 by mayeung           #+#    #+#             */
-/*   Updated: 2025/04/22 16:24:22 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/13 17:35:49 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	map_line_handler(t_parse *parse, char *line)
 		return (ERR);
 	if (!parse->vars->map_height && !ft_strlen(ft_remove_space(line)))
 		return (OK);
+	if (!(ft_strlen(ft_remove_space(line))))
+		return (ERR);
 	parse->vars->map_height++;
 	if (ft_strlen(line) > (size_t)parse->vars->map_width)
 		parse->vars->map_width = ft_strlen(line);
