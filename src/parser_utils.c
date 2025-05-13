@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
+/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:26:50 by mayeung           #+#    #+#             */
-/*   Updated: 2025/05/06 18:25:04 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:56:13 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	free_content(void *arg)
 int	check_map_name(char *path)
 {
 	if (!path)
-		return (err_msg("Error: Null argument\n", ERR));
+		return (err_msg("Error\nNull argument\n", ERR));
 	if (!path || ft_strlen(path) < ft_strlen(".cub"))
-		return (err_msg("Error: File name too short\n", ERR));
+		return (err_msg("Error\nFile name too short\n", ERR));
 	if (!ft_strrchr(path, '.')
 		|| ft_strncmp(ft_strrchr(path, '.'), ".cub", ft_strlen(".cub") + 1))
-		return (err_msg("Error: File name not end with .cub\n",
+		return (err_msg("Error\nFile name not end with .cub\n",
 				ERR));
 	return (OK);
 }

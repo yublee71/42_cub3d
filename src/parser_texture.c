@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
+/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:11:34 by mayeung           #+#    #+#             */
-/*   Updated: 2025/05/06 18:26:57 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:55:58 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	texture_handler(t_parse *parse, char *line, int type)
 	if (!path)
 		return (ERR);
 	if (load_texture_to_img(parse, path, &parse->vars->assets[type]))
-		return (free(path), err_msg("Error: Can't open texture file\n", ERR));
+		return (free(path), err_msg("Error\nCan't open texture file\n", ERR));
 	free(path);
 	line = ft_remove_space(line + i);
 	if (*line != '\0')

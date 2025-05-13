@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
+/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:55:33 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/10 21:04:57 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:55:39 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include <fcntl.h>
 # include <limits.h>
 
-# define STR_ERR_MLX_INIT		"Error: MLX initialization failed.\n"
-# define STR_ERR_WINDOW_INIT	"Error: Window initialization failed.\n"
-# define STR_ERR_IMG_INIT		"Error: Image initialization failed.\n"
-# define STR_ERR_IMG_OPEN		"Error: Image file open failed.\n"
+# define STR_ERR_MLX_INIT		"Error\nMLX initialization failed.\n"
+# define STR_ERR_WINDOW_INIT	"Error\nWindow initialization failed.\n"
+# define STR_ERR_IMG_INIT		"Error\nImage initialization failed.\n"
+# define STR_ERR_IMG_OPEN		"Error\nImage file open failed.\n"
 
 # define WINDOW_WIDTH	1280
 # define WINDOW_HEIGHT	720

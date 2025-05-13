@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
+/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/06 18:21:42 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/13 20:55:49 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&vars, sizeof(t_vars));
 	if (argc != 2)
-		return (err_msg("Error: Incorrect number of arguments\n", 1));
+		return (err_msg("Error\nIncorrect number of arguments\n", 1));
 	initialize_cub3d(&vars);
 	vars.vecset = &vecset;
 	vecset.pos.x = -1;
