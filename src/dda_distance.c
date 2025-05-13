@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
+/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:30:23 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/10 18:53:35 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/13 16:47:07 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ t_distinfo	choose_dist(t_distinfo d_x, t_distinfo d_y, t_vec raydir)
 	{
 		distance_info = d_x;
 		if (raydir.x > 0)
-			distance_info.hit_direction = WEST;
-		else
 			distance_info.hit_direction = EAST;
+		else
+			distance_info.hit_direction = WEST;
 	}
 	else
 	{
 		distance_info = d_y;
 		if (raydir.y > 0)
-			distance_info.hit_direction = NORTH;
-		else
 			distance_info.hit_direction = SOUTH;
+		else
+			distance_info.hit_direction = NORTH;
 	}
 	return (distance_info);
 }
