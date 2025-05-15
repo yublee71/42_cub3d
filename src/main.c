@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
+/*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:46:40 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/13 20:55:49 by yublee           ###   ########.fr       */
+/*   Updated: 2025/05/15 21:01:02 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ int	main(int argc, char **argv)
 	vars.vecset = &vecset;
 	vecset.pos.x = -1;
 	vecset.pos.y = -1;
-	if (check_map_name(argv[1]))
-		return (close_game(&vars), 1);
-	if (vars_parser(&vars, argv[1]))
-		return (close_game(&vars), 1);
+	if (check_map_name(argv[1]) || vars_parser(&vars, argv[1]))
+	{
+		vars.exit_no = EXIT_FAILURE;
+		close_game(&vars);
+	}
 	draw_image(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
 	mlx_hook(vars.win, 2, 1L << 0, handle_key_input, &vars);
