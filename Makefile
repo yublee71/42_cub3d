@@ -1,4 +1,4 @@
-NAME			:= cub3d
+NAME			:= cub3D
 CC				:= cc
 MANDATORY_FLAGS	:= -Wall -Wextra -Werror
 DEBUG_FLAGS		:= -g
