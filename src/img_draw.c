@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:59:36 by yublee            #+#    #+#             */
-/*   Updated: 2025/05/10 19:51:16 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/20 15:56:04 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ static void	put_asset_to_img(t_vars *vars, t_lineinfo line_info, int x, int y)
 	scale_y = (double)line_info.line_height
 		/ vars->assets[line_info.distance_info.hit_direction].height;
 	k = 0;
+	j = 0;
 	if (src.height * scale_y > WINDOW_HEIGHT)
-		k = - (src.height * scale_y - WINDOW_HEIGHT) / 2;
-	j = fabs(k);
-	k = 0;
+		j = (src.height * scale_y - WINDOW_HEIGHT) / 2;
 	while (j < src.height * scale_y && y + k < WINDOW_HEIGHT)
 	{
 		put_pixel_to_img(dst, x, y + k,
