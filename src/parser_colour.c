@@ -6,7 +6,7 @@
 /*   By: mayeung <mayeung@student.42london.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:06:58 by mayeung           #+#    #+#             */
-/*   Updated: 2025/04/22 16:07:51 by mayeung          ###   ########.fr       */
+/*   Updated: 2025/05/20 15:50:23 by mayeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	colour_handler(t_parse *parse, char *line, int *colour, int *type)
 	line = ft_remove_space(line);
 	if (*line != '\0')
 		return (ERR);
+	*type = YES;
 	parse->num_texture_colour++;
 	return (OK);
 }
